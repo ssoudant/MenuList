@@ -15,8 +15,6 @@
         	android:layout_width="0dp"
         	android:layout_height="wrap_content"
         	android:inputType="textAutoCorrect|textAutoComplete|textMultiLine"
-        	android:imeActionId="1337"
-        	android:imeOptions="actionDone"
         	android:hint="@string/dish" />
  	</TableRow>
  	<TableRow>
