@@ -1,16 +1,103 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
-
-     <EditText android:id="@+id/edit_message"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
+    
+    <TableRow>
+    	<Spinner
+     		android:id="@+id/day1_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay1"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:inputType="textAutoCorrect|textAutoComplete|textMultiLine"
+        	android:imeActionId="1337"
+        	android:imeOptions="actionDone"
+        	android:hint="@string/dish" />
+ 	</TableRow>
+ 	<TableRow>
+	    <Spinner
+	     	android:id="@+id/day2_spinner"
+	    	android:layout_weight="1"
+	    	android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+	    
+	    <EditText android:id="@+id/dishOfTheDay2"
+	        android:layout_weight="2"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/dish" />
+	</TableRow>
+ 	<TableRow>
+    	<Spinner
+     		android:id="@+id/day3_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay3"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/dish" />
+ 	</TableRow>
+ 	<TableRow>
+    	<Spinner
+     		android:id="@+id/day4_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay4"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/dish" />
+ 	</TableRow>
+ 	<TableRow>
+    	<Spinner
+     		android:id="@+id/day5_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay5"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/dish" />
+ 	</TableRow>	
+ 	<TableRow>
+    	<Spinner
+     		android:id="@+id/day6_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay6"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/dish" />
+ 	</TableRow>
+ 	<TableRow>
+    	<Spinner
+     		android:id="@+id/day7_spinner"
+	    	android:layout_weight="1"
+    		android:layout_width="0dp"
+	    	android:layout_height="wrap_content" />
+		<EditText android:id="@+id/dishOfTheDay7"
+        	android:layout_weight="2"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:hint="@string/dish" />
+ 	</TableRow>
+ 	
+    <!--style="?android:attr/borderlessButtonStyle"-->
  	<Button
+	    android:id="@+id/button_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send" />
-</LinearLayout>
+        android:text="@string/button_save"
+        android:onClick="saveAction" />
+</TableLayout>

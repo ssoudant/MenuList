@@ -2,7 +2,18 @@
 
     <string name="app_name">MenuList</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="edit_message">Enter a message</string>
-	<string name="button_send">Send</string>
+    <string name="title_activity_main">Menus de la semaine</string>
+    <string name="dish">Quoi ?</string>
+	<string name="button_save">Enregistrer</string>
+	<string name="days_spinner">Jours</string>
+	
+	<string-array name="days_array">
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+        <item>Samedi</item>
+        <item>Dimanche</item>
+    </string-array>
 </resources>
