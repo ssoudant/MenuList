@@ -3,8 +3,11 @@ package com.dahuette.menulist;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.R.integer;
+import android.util.Log;
+
 public class Menus {
-	private Map<String,Menu> menus;
+	private Map<Integer, Menu> menus;
 	private static Menus m;
 	
 	public static Menus getInstance() {
@@ -15,21 +18,33 @@ public class Menus {
 	}
 	
 	private Menus() {
-		// FIXME : voir si on a besoin de trier les éléments selon le jour du repas
-		menus = new HashMap<String, Menu>();
+		menus = new HashMap<Integer, Menu>();
 	}
 	
-	public void addMenu(String d) {
-		menus.put(d, null);
+	public void addDay(Integer id, String day) {
+		Menu menu = getMenu(id);
+		menu.setDay(day);
 	}
 
-	public void putMenu(String d, Menu n) {
-		menus.put(d, n);
-		// FIXME : gérer les retours n'est pas interdit, voir si c'est utile
+	public void addMenu(Integer id, String dish) {
+		Menu m = getMenu(id);
+		m.setDish(dish);
 	}
-	
-	public void removeMenu(String d) {
-		menus.remove(d);
-		// FIXME : gérer les retours n'est pas interdit, voir si c'est utile
+
+	private Menu getMenu(Integer id) {
+		Menu menu = menus.get(id);
+		if (menu == null) {
+			menu = new Menu();
+			menus.put(id, menu);
+		}
+		return menu;
+	}
+		
+	public void log() {
+		for (Map.Entry<Integer, Menu> entry : menus.entrySet()) {
+			Integer i = entry.getKey();
+			Menu m = entry.getValue();
+			Log.i("Menus:", "Menu du " + m.getDay() + " id:" + i + ": " + m.getDish());
+		}
 	}
 }
