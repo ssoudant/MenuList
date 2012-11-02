@@ -3,20 +3,18 @@ package com.dahuette.menulist;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
+import android.widget.TableRow;
 
 public class MainActivity extends Activity implements OnItemSelectedListener {
 	private Menus menusOfWeek;
+	private static String TAG = "MainActivity";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +22,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         setContentView(R.layout.activity_main);
         createMenus();
         createDaysList();
-        
     }
 
     @Override
@@ -37,28 +34,20 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
     	menusOfWeek = Menus.getInstance();
     }
     
-    // FIXME : pas très joli :-(
     private void createDaysList() {
-    	Spinner spinner1 = (Spinner) findViewById(R.id.day1_spinner);
-    	createDaysAdapter(spinner1, 1);
-    	
-    	Spinner spinner2 = (Spinner) findViewById(R.id.day2_spinner);
-    	createDaysAdapter(spinner2, 2);
-    	
-    	Spinner spinner3 = (Spinner) findViewById(R.id.day3_spinner);
-    	createDaysAdapter(spinner3, 3);
-    	
-    	Spinner spinner4 = (Spinner) findViewById(R.id.day4_spinner);
-    	createDaysAdapter(spinner4, 4);
-
-    	Spinner spinner5 = (Spinner) findViewById(R.id.day5_spinner);
-    	createDaysAdapter(spinner5, 5);
-    	
-    	Spinner spinner6 = (Spinner) findViewById(R.id.day6_spinner);
-    	createDaysAdapter(spinner6, 6);
-    	
-    	Spinner spinner7 = (Spinner) findViewById(R.id.day7_spinner);
-    	createDaysAdapter(spinner7, 7);
+    	int ids[] = {
+    			R.id.day1_spinner, 
+    			R.id.day2_spinner,
+    			R.id.day3_spinner, 
+    			R.id.day4_spinner,
+    			R.id.day5_spinner, 
+    			R.id.day6_spinner,
+    			R.id.day7_spinner
+    	};
+    	for (int i = 0; i < ids.length; i++) {
+    		Spinner spinner = (Spinner) findViewById(ids[i]);
+        	createDaysAdapter(spinner, i);
+    	}
     }
     
     private void createDaysAdapter(Spinner s, int order) {
@@ -74,8 +63,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
     public void onItemSelected(AdapterView<?> adapter, View view, int pos,
 			long id) {
 		String s = (String) adapter.getItemAtPosition(pos);
-		menusOfWeek.addMenu(s);
-		Log.i(this.toString(), "Ajout du jour:" + s);
+		menusOfWeek.addDay(((Spinner) view.getParent()).getId(), s);
 	}
 
 	public void onNothingSelected(AdapterView<?> adapter) {
@@ -84,12 +72,29 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 	
     public void saveAction(View w) {
     	// TODO : c'est dit !
-    	Log.i(this.getComponentName().toString(), "TODO : faire l'opération de sauvegarde sur un fichier sur la carte");
-    	Spinner s = (Spinner) findViewById(R.id.day1_spinner);
-    	EditText editText = (EditText) findViewById(R.id.dishOfTheDay1);
-    	//menusOfWeek.put(s.)
-    	Log.i(this.toString(), "save quoi ? : " + R.id.dishOfTheDay1 + editText.getText().toString());
+    	Log.i(TAG, "TODO : faire l'opération de sauvegarde sur un fichier sur la carte");
     	
+    	int editTextIds[] = {
+    			R.id.dishOfTheDay1, 
+    			R.id.dishOfTheDay2,
+    			R.id.dishOfTheDay3,
+    			R.id.dishOfTheDay4,
+    			R.id.dishOfTheDay5,
+    			R.id.dishOfTheDay6,
+    			R.id.dishOfTheDay7
+    	};
+    	
+    	for (int id : editTextIds) {
+    		EditText editText = (EditText) findViewById(id);
+    		
+    		TableRow t = (TableRow) editText.getParent();
+    		Spinner s = (Spinner) t.getChildAt(0);
+    		int sId = s.getId();
+    		Log.i(TAG, "save quoi: spinnerId " + sId + " " + editText.getText().toString());
+    		menusOfWeek.addMenu(sId, editText.getText().toString());
+    	}
+    	
+    	menusOfWeek.log();
     }
     
     // TODO : restauration des données depuis le fichier enregistré
