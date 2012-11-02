@@ -3,10 +3,10 @@ package com.dahuette.menulist;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.R.integer;
 import android.util.Log;
 
 public class Menus {
+	private static String TAG = "Menus";
 	private Map<Integer, Menu> menus;
 	private static Menus m;
 	
@@ -44,7 +44,7 @@ public class Menus {
 		for (Map.Entry<Integer, Menu> entry : menus.entrySet()) {
 			Integer i = entry.getKey();
 			Menu m = entry.getValue();
-			Log.i("Menus:", "Menu du " + m.getDay() + " id:" + i + ": " + m.getDish());
+			Log.i(TAG, "Menu du " + m.getDay() + " id:" + i + ": " + m.getDish());
 		}
 	}
 }
